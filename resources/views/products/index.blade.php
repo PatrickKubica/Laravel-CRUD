@@ -4,13 +4,10 @@
 
 
 @section('content')
+    <h1>Your Products</h1>
     <ul>
     @foreach ($products as $product)
         <li>{{ $product->name }}</li>
     @endforeach
     </ul>
-
-    <div>
-        <a href="/products/create">Create a new product</a>
-    </div>
 @endsection
