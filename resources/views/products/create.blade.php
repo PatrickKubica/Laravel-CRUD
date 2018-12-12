@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 
-@section('title', 'Create new project')
+@section('title', 'Create a product')
 
 
 @section('content')
     <h1> Create a new Product </h1>
 
     <form method="POST" action="/products">
-        {{ csrf_field() }}
+        @csrf
         <div>
             <input type="text" name="name" placeholder="Product title">
         </div>
