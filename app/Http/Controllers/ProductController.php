@@ -37,7 +37,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create(request(['name','sku','description']));
+        $validatedAttributes = $request->validate([
+            'name' => 'required',
+            'sku' => 'required',
+            'description' => 'required',
+        ]);
+
+        Product::create($validatedAttributes);
 
         return redirect('/products');
     }
