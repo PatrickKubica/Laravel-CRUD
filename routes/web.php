@@ -11,6 +11,10 @@
 |
 */
 
-Route::redirect('/', '/products');
+Route::redirect('/', '/home');
 
 Route::resource('products', 'ProductController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

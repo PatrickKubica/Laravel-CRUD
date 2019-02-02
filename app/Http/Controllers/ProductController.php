@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('owner_id', auth()->id())->get();
 
         return view('products.index', compact('products'));
     }
@@ -43,6 +47,8 @@ class ProductController extends Controller
             'description' => 'required',
         ]);
 
+        $validatedAttributes['owner_id'] = auth()->id();
+
         Product::create($validatedAttributes);
 
         return redirect('/products');
@@ -56,6 +62,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $this->authorize('view', $product);
         return view('products.show', compact('product'));
     }
 
