@@ -15,10 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('owner_id');
             $table->string('name');
             $table->integer('sku');
             $table->text('description');
             $table->timestamps();
+            $table->foreign('owner_id')->references('id')->on('users')->nDelete('cascade');
         });
     }
 
