@@ -11,7 +11,7 @@
 |
 */
 
-Route::redirect('/', '/home');
+Route::redirect('/', '/products');
 
 Route::resource('products', 'ProductController');
 

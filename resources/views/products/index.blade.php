@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title', 'Your Products')
 
@@ -10,4 +10,8 @@
         <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a></li>
     @endforeach
     </ul>
+
+    @if(session('message'))
+        <p>{{ session('message') }} </p>
+    @endif
 @endsection

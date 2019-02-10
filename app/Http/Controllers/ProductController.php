@@ -50,6 +50,7 @@ class ProductController extends Controller
         $validatedAttributes['owner_id'] = auth()->id();
 
         Product::create($validatedAttributes);
+        session()->flash('message', "Product created successfully");
 
         return redirect('/products');
     }
