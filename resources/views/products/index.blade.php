@@ -4,14 +4,27 @@
 
 
 @section('content')
-    <h1>Your Products</h1>
-    <ul>
+<div class="container">
+    <div class="d-flex justify-content-between pb-3">
+        <h2>Your Products</h2>
+        <a class="btn btn-primary" role="button" href="/products/create">New Product</a>
+    </div>
+    
+    
+    <div class="row">
     @foreach ($products as $product)
-        <li><a href="/products/{{ $product->id }}">{{ $product->name }}</a></li>
+        <div class="col-sm-4 mb-3 pr-2 pl-2">
+            <div class="bg-white border border-dark rounded p-3 h-100">
+                <a class="text-primary" href="/products/{{ $product->id }}">{{ $product->name }}</a>
+                <div>SKU: {{ $product->sku }}</div>
+                <div>{{ str_limit($product->description, 200) }}</div>
+            </div>
+        </div>
     @endforeach
-    </ul>
+    </div>
 
     @if(session('message'))
-        <p>{{ session('message') }} </p>
+        <div class="alert alert-success">{{ session('message') }} </p>
     @endif
+</div>
 @endsection

@@ -50,7 +50,7 @@ class ProductController extends Controller
         $validatedAttributes['owner_id'] = auth()->id();
 
         Product::create($validatedAttributes);
-        session()->flash('message', "Product created successfully");
+        session()->flash('message', "Product successfully created");
 
         return redirect('/products');
     }
@@ -88,6 +88,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->update(request(['name','sku','description']));
+        session()->flash('message', "Product sucessfully updated");
         return redirect('/products');
     }
 
@@ -100,6 +101,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        session()->flash('message', "Product sucessfully deleted");
         return redirect('/products');
     }
 }
