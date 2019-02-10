@@ -1,35 +1,31 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title', 'Edit a product')
 
 
 @section('content')
+<div class="container">
      <form method="POST" action="/products/{{ $product->id }}">
         @method('PATCH')
         @csrf
         
-        <div>
-            <input type="text" name="name" value="{{ $product->name }}">
+        <div class="form-group">
+            <input class="form-control" type="text" name="name" value="{{ $product->name }}">
         </div>
-        <div>
-            <input type="text" name="sku" value="{{ $product->sku }}">
+        <div class="form-group">
+            <input class="form-control" type="text" name="sku" value="{{ $product->sku }}">
         </div>
-        <div>
-            <textarea name="description">{{ $product->description }}</textarea>
+        <div class="form-group">
+            <textarea class="form-control" name="description">{{ $product->description }}</textarea>
         </div>
-        <div>
-            <button type="submit"> update the product</button>
-        </div>
-
+        <button class="btn btn-primary" type="submit">Update</button>
     </form>
 
     <form method="POST" action="/products/{{ $product->id }}">
         @method('DELETE')
         @csrf
         
-        <div>
-            <button type="submit"> Delete the product</button>
-        </div>
-
+        <button class="btn btn-danger mt-2" type="submit">Delete</button>
     </form>
+</div>
 @endsection
